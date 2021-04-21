@@ -21,13 +21,11 @@ def count_sheets(workbook):
     # public_func.write_excel(out_path, out_list, out_list2)
 
 
-# copy sheet1 before sheet2 and rename it
-def copy_sheet(workbook, to_copy, workbook2, copy_before, name):
-    to_copy_sheet = workbook.Worksheets(to_copy)
-    copy_before_sheet = workbook2.Worksheets(copy_before)
-    to_copy_sheet.Copy(copy_before_sheet)
-    new_sheet = workbook.Worksheets(workbook.Sheets.Count - 3)
-    new_sheet.Name = name
+def copy_sheet2(w_book, to_copy, name):
+    sheet_num = w_book.Worksheets.Count
+    to_copy_sheet = w_book.Worksheets(to_copy)
+    to_copy_sheet.Copy(None, After=w_book.Worksheets(sheet_num))
+    w_book.Worksheets(sheet_num+1).Name = name
 
 
 # excel functions
